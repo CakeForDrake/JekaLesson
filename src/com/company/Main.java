@@ -139,23 +139,22 @@ public class Main {
 //            System.out.println(Arrays.toString(mbit[y]));
 //        }
 //        Warrior dima = new Warrior("dima", 100, 35, 20);
-//        Warrior vova = new Warrior("vova", 200, 15, 40);
-//        Knight kVova = new Knight("kVova",100,35,30);
-//        dima.duel(kVova);
-//        System.out.println(vova.fight(dima));
+//        Warrior vova = new Warrior();
+//        Knight dima = new Knight();
+//
+//        System.out.println(dima.isAlive());
+//        System.out.println(vova.duel(dima));
+
 //        System.out.println(dima);
+
 
         Army gouls = new Army("Undead",10);
         Army paladins = new Army();
-
-        paladins.addKnights(6);
-        paladins.addWarriors(2);
-
+//
+        paladins.addUnit(new Warrior(),4);
+        paladins.addUnit(new Defender(),4);
+        paladins.addUnit(new Knight(),2);
         paladins.setRace("Human");
-//        System.out.println(gouls.getLegion().isEmpty());
-//        System.out.println(gouls.getUnits());
-//        System.out.println(paladins.getLegion().size());
-        System.out.println("lalala");
 
         Battle holyWar = new Battle();
         holyWar.fight(paladins,gouls);

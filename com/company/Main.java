@@ -1,7 +1,5 @@
 package com.company;
 
-import com.company.Cats.Cat;
-
 public class Main {
 
 

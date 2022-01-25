@@ -1,17 +1,24 @@
 package com.company;
 
-import java.sql.SQLOutput;
-
 public class Battle {
 
     public boolean fight(Army atk, Army target) {
         boolean victory = true;
 
-        while (atk.getLegion().isEmpty() != true && target.getLegion().isEmpty() != true) {
-            int thisDmg = atk.getLegion().get(0).getDmg() - (target.getLegion().get(0).getArm() / 10);
-            int targetDmg = target.getLegion().get(0).getDmg() - (atk.getLegion().get(0).getArm() / 10);
+        while (!atk.getLegion().isEmpty() && !target.getLegion().isEmpty()) {
+
+            int thisDmg = atk.getLegion().get(0).getDmg() - target.getLegion().get(0).getArmor();
+            if (thisDmg < 0) {
+                thisDmg = 0;
+            }
+            int targetDmg = target.getLegion().get(0).getDmg() - atk.getLegion().get(0).getArmor();
+            if (targetDmg < 0) {
+                targetDmg = 0;
+            }
             int thisHp = atk.getLegion().get(0).getHp();
             int targetHp = target.getLegion().get(0).getHp();
+            System.out.println(atk.getRace() + " soldier " + thisHp);
+            System.out.println(target.getRace() + " soldier " + targetHp);
 
             target.getLegion().get(0).setHp(targetHp - thisDmg);
             if (targetHp > 0) {
@@ -26,13 +33,13 @@ public class Battle {
                 atk.getLegion().remove(0);
                 System.out.println(atk.getUnits() + " " + atk.getRace() + " soldiers remaining! \n" + target.getUnits() + " " + target.getRace() + " soldiers remaining! \n");
             }
-            if (target.getLegion().isEmpty() == true) {
-                System.out.println(atk.getRace() + " army has won the battle with " + atk.getUnits() + " unit(s) remaining (" + atk.getLegion().get(atk.getLegion().size() - 1).getHp() + " HP)");
+            if (target.getLegion().isEmpty()) {
+                System.out.println(atk.getRace() + " army has won the battle with " + atk.getUnits() + " unit(s) remaining (" + atk.getLegion().get(0).getHp() + " HP)");
                 break;
             }
-            if (atk.getLegion().isEmpty() == true) {
+            if (atk.getLegion().isEmpty()) {
                 victory = false;
-                System.out.println(target.getRace() + " army has won the battle with " + target.getUnits() + " unit(s) remaining (" + target.getLegion().get(target.getLegion().size() - 1).getHp() + "HP)");
+                System.out.println(target.getRace() + " army has won the battle with " + target.getUnits() + " unit(s) remaining (" + target.getLegion().get(0).getHp() + "HP)");
                 break;
             }
         }

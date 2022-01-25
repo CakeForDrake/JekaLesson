@@ -35,11 +35,26 @@ public class Army {
         return legion;
     }
 
+    public void addUnit(Warrior unit) {
+        legion.add(unit);
+    }
+
+    public void addUnit(Warrior unit, int number) {
+        for (int i = 0; i < number; i++) {
+            legion.add(unit);
+        }
+    }
+
     public void addWarriors(int x) {
         for (int i = 0; i < x; i++) {
             legion.add(new Warrior());
         }
     }
+
+    public void removeUnit(Warrior unit) {
+        legion.remove(unit);
+    }
+
 
     public void addKnights(int x) {
         for (int i = 0; i < x; i++) {
