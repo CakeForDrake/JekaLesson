@@ -3,13 +3,10 @@ package com.company;
 import java.util.ArrayList;
 
 public class Army {
-    private String race;
-    private ArrayList<Warrior> legion;
+    private String race = "Unknown";
+    private ArrayList<Warrior> legion = new ArrayList<>();;
 
-    public Army() {
-        this.race = "unknown";
-        this.legion = new ArrayList<>();
-    }
+    public Army() {}
 
     public Army(String race, int units) {
         this.race = race;
@@ -35,45 +32,31 @@ public class Army {
         return legion;
     }
 
-    public void addUnit(Warrior unit) {
-        legion.add(unit);
+    public Warrior getFrontUnit() {
+        return legion.get(0);
     }
 
-    public void addUnits(int warriors,int knights,int defenders) {
-        for (int i = 0; i < warriors; i++) {
-            legion.add(new Warrior());
-        }
-        for (int i = 0; i < knights; i++) {
-            legion.add(new Knight());
-        }
-        for (int i = 0; i < defenders; i++) {
-            legion.add(new Defender());
-        }
-    }
-
-    public void addDefenders(int x) {
-        for (int i = 0; i < x; i++) {
-            legion.add(new Defender());
-        }
-    }
-
-    public void addWarriors(int x) {
-        for (int i = 0; i < x; i++) {
-            legion.add(new Warrior());
-        }
+    public boolean haveUnits() {
+        return !legion.isEmpty();
     }
 
     public void removeUnit(Warrior unit) {
         legion.remove(unit);
     }
 
-
-    public void addKnights(int x) {
-        for (int i = 0; i < x; i++) {
-            legion.add(new Knight());
-        }
+    public void addUnit(Warrior unit) {
+        legion.add(unit);
     }
 
+    public void addUnit(int number, WarriorType warriorType) {
+        for (int i = 0; i < number; i++) {
+            switch (warriorType) {
+                case KNIGHT -> legion.add(new Knight());
+                case WARRIOR -> legion.add(new Warrior());
+                case DEFENDER -> legion.add(new Defender());
+            }
+        }
+    }
 }
 
 

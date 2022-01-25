@@ -36,7 +36,7 @@ public class Warrior {
 
     public void setHp(int hp) {
         this.hp = hp;
-        if (getHp() <= 0) {
+        if (hp <= 0) {
             isAlive = false;
         }
     }
@@ -55,43 +55,25 @@ public class Warrior {
 
 
     public boolean duel(Warrior target) {
-        boolean win = true;
-        while (target.getHp() > 0 && this.getHp() > 0) {
-//            System.out.println("NEXT ROUND!!!!!! ");
-            System.out.println(this.name + " " + this.getHp());
-            System.out.println(target.name + " " + target.getHp() + "\n" + "-");
-            int dmgDone = getDmg() - (target.getArmor());
-            int dmgDoneBack = target.getDmg() - (this.getArmor());
-            if (dmgDone < 0) {
-                dmgDone = 0;
-                target.setHp(target.getHp() - dmgDone);
-            } else {
-                target.setHp(target.getHp() - dmgDone);
+        while (this.isAlive() && target.isAlive()) {
+            if (this.getDmg() > target.getArmor()) {
+                target.setHp(target.getHp()-this.getDmg()+target.getArmor());
             }
-            if (target.getHp() > 0) {
-                if (dmgDoneBack < 0) {
-                    dmgDoneBack = 0;
-                    this.setHp(this.getHp() - dmgDoneBack);
-                } else {
-                    this.setHp(this.getHp() - dmgDoneBack);
-                }
-            } else {
-                System.out.println(name + " deals " + dmgDone + " damage and kills " + target.name + "!!!!!!!!!!!!!!!!! \n\n");
-                break;
+            if (!target.isAlive()) {
+                return true;
             }
-            if (target.isAlive && this.isAlive) {
-                System.out.println(name + " attacks " + target.name + " and deals " + dmgDone + " damage! ");
-                System.out.println(target.name + " attacks " + this.name + " back and deals " + dmgDoneBack + " damage! \n" + "-");
-//                System.out.println(this.name + " " + this.getHp());
-//                System.out.println(target.name + " " + target.getHp() + "\n \n");
-            } else {
-                System.out.println(name + " attacks " + target.name + " and deals " + dmgDone + " damage! ");
-                System.out.println(target.name + " deals " + dmgDoneBack + " damage back and kills " + this.name + "!!!!!!!!!!!!!!!!! \n\n");
-                win = false;
-                break;
+            if (target.getDmg() > this.getArmor()) {
+                this.setHp(this.getHp()-target.getDmg()+this.getArmor());
+            }
+            if (!target.isAlive()) {
+                return false;
             }
         }
-        return win;
+        if (!this.isAlive()) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     @Override
