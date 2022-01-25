@@ -20,7 +20,9 @@ public class Battle {
             System.out.println(atk.getRace() + " soldier " + thisHp);
             System.out.println(target.getRace() + " soldier " + targetHp);
 
-            target.getLegion().get(0).setHp(targetHp - thisDmg);
+            if (thisHp > 0) {
+                target.getLegion().get(0).setHp(targetHp - thisDmg);
+            }
             if (targetHp > 0) {
                 atk.getLegion().get(0).setHp(thisHp - targetDmg);
             } else {
@@ -43,6 +45,34 @@ public class Battle {
                 break;
             }
         }
+        return victory;
+    }
+
+    public boolean realFight(Army attack, Army defend) {
+        boolean victory = true;
+
+        while (!attack.getLegion().isEmpty() && !defend.getLegion().isEmpty()) {
+            Warrior attacker = attack.getLegion().get(0);
+            Warrior defender = defend.getLegion().get(0);
+            if (attacker.duel(defender)) {
+                defend.removeUnit(defender);
+                System.out.println(attack.getRace() + " " + attack.getUnits() + " units remaining!\n" + defend.getRace() + " " + defend.getUnits() + " units remaining!\n\n");
+            } else {
+                attack.removeUnit(attacker);
+                System.out.println(attack.getRace() + " " + attack.getUnits() + " units remaining!\n" + defend.getRace() + " " + defend.getUnits() + " units remaining!\n\n");
+            }
+            if (attack.getLegion().isEmpty()) {
+                victory = false;
+                System.out.println(" !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! \n " + attack.getRace() + " legion has lost the battle! \n !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                break;
+            } else {
+                if (defend.getLegion().isEmpty()) {
+                    System.out.println(" !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! \n " + attack.getRace() + " legion has won the battle! \n !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                    break;
+                }
+            }
+        }
+
         return victory;
     }
 }

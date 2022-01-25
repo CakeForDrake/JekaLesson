@@ -57,7 +57,7 @@ public class Warrior {
     public boolean duel(Warrior target) {
         boolean win = true;
         while (target.getHp() > 0 && this.getHp() > 0) {
-            System.out.println("NEXT ROUND!!!!!! ");
+//            System.out.println("NEXT ROUND!!!!!! ");
             System.out.println(this.name + " " + this.getHp());
             System.out.println(target.name + " " + target.getHp() + "\n" + "-");
             int dmgDone = getDmg() - (target.getArmor());
@@ -76,17 +76,17 @@ public class Warrior {
                     this.setHp(this.getHp() - dmgDoneBack);
                 }
             } else {
-                System.out.println(name + " deals " + dmgDone + " damage and kills " + target.name + "!!! \n");
+                System.out.println(name + " deals " + dmgDone + " damage and kills " + target.name + "!!!!!!!!!!!!!!!!! \n\n");
                 break;
             }
             if (target.isAlive && this.isAlive) {
                 System.out.println(name + " attacks " + target.name + " and deals " + dmgDone + " damage! ");
                 System.out.println(target.name + " attacks " + this.name + " back and deals " + dmgDoneBack + " damage! \n" + "-");
-                System.out.println(this.name + " " + this.getHp());
-                System.out.println(target.name + " " + target.getHp() + "\n \n");
+//                System.out.println(this.name + " " + this.getHp());
+//                System.out.println(target.name + " " + target.getHp() + "\n \n");
             } else {
                 System.out.println(name + " attacks " + target.name + " and deals " + dmgDone + " damage! ");
-                System.out.println(target.name + " deals " + dmgDoneBack + " damage back and kills " + this.name + "!!! \n");
+                System.out.println(target.name + " deals " + dmgDoneBack + " damage back and kills " + this.name + "!!!!!!!!!!!!!!!!! \n\n");
                 win = false;
                 break;
             }

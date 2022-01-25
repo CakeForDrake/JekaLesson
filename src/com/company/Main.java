@@ -150,14 +150,18 @@ public class Main {
 
         Army gouls = new Army("Undead",10);
         Army paladins = new Army();
-//
-        paladins.addUnit(new Warrior(),4);
-        paladins.addUnit(new Defender(),4);
-        paladins.addUnit(new Knight(),2);
         paladins.setRace("Human");
+//
+//        paladins.addUnit(new Warrior(),4);
+//        paladins.addUnit(new Defender(),4);
+//        paladins.addUnit(new Knight(),2);
+
+        paladins.addUnits(4,4,2);
+
 
         Battle holyWar = new Battle();
-        holyWar.fight(paladins,gouls);
+//        holyWar.fight(gouls,paladins);
+        holyWar.realFight(paladins,gouls);
     }
 }
 
