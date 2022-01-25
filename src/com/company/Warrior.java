@@ -69,11 +69,7 @@ public class Warrior {
                 return false;
             }
         }
-        if (!this.isAlive()) {
-            return false;
-        } else {
-            return true;
-        }
+        return this.isAlive();
     }
 
     @Override
