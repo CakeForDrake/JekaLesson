@@ -1,7 +1,5 @@
 package com.company.Cats;
 
-import com.company.Animal;
-
 public class Cat extends Animal {
 
     private int age;
