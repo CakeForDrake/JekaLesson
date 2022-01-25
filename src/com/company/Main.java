@@ -155,6 +155,7 @@ public class Main {
 //        System.out.println(gouls.getLegion().isEmpty());
 //        System.out.println(gouls.getUnits());
 //        System.out.println(paladins.getLegion().size());
+        System.out.println("lalala");
 
         Battle holyWar = new Battle();
         holyWar.fight(paladins,gouls);
