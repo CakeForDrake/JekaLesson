@@ -35,10 +35,12 @@ public class Warrior {
     }
 
     public void setHp(int hp) {
-        this.hp = hp;
         if (hp <= 0) {
             isAlive = false;
+            this.hp = 0;
+            return;
         }
+        this.hp = hp;
     }
 
     public int getDmg() {
@@ -58,15 +60,15 @@ public class Warrior {
         while (this.isAlive() && target.isAlive()) {
             if (this.getDmg() > target.getArmor()) {
                 target.setHp(target.getHp()-this.getDmg()+target.getArmor());
-            }
-            if (!target.isAlive()) {
-                return true;
+                if (!target.isAlive()) {
+                    return true;
+                }
             }
             if (target.getDmg() > this.getArmor()) {
                 this.setHp(this.getHp()-target.getDmg()+this.getArmor());
-            }
-            if (!target.isAlive()) {
-                return false;
+                if (!this.isAlive()) {
+                    return false;
+                }
             }
         }
         return this.isAlive();
