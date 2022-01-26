@@ -4,13 +4,12 @@ import java.util.ArrayList;
 
 public class Army {
     private String race = "Unknown";
-    private ArrayList<Warrior> legion = new ArrayList<>();;
+    private ArrayList<Warrior> legion = new ArrayList<>();
 
     public Army() {}
 
     public Army(String race, int units) {
         this.race = race;
-        this.legion = new ArrayList<>();
         for (int i = 0; i < units; i++) {
             legion.add(new Warrior());
         }
